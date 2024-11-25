@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Enter Account - X Bank</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Enter Account</h1>
+
+    <div id="maincontainer">
+        <!-- Form on the left -->
+        <div id="formdiv">
+            <form id="myform">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter name">
+                <label for="age">Age:</label>
+                <input type="number" id="age" min="18" max="100" placeholder="Enter age">
+                <label for="deposit">Deposit:</label>
+                <input type="number" id="deposit" placeholder="Enter deposit">
+
+                <button type="button" onclick="addCustomer()">Add Customer</button>
+            </form>
+        </div>
+
+        <!-- Table on the right -->
+        <div id="tablediv">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Deposit</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTable">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+
+        //we will add dynamically customers here 
+        function addCustomer() {
+            //1- start with capture fields 
+            const name = document.getElementById('name').value;
+            const age = parseInt(document.getElementById('age').value);
+            const deposit = parseFloat(document.getElementById('deposit').value);
+
+
+            //we want a person name min 5 chars 
+
+            if (!name || !age || !deposit || deposit < 0 || name.length < 3 || age > 100) {
+                alert("you need to provide all fields ");
+                return
+
+            }
+
+
+
+
+
+
+
+
+            console.log(`${name} ${age} ${deposit}`);
+
+            let rowColor = "";
+
+            if (age < 18 || deposit < 20000) {
+                rowColor = 'background-color:red;color:white';
+            } else {
+                rowColor = 'background-color:green;color:white';
+            };
+
+            //using template literals to add new  row 
+            const newRow = `
+            <tr style="${rowColor}">
+                <td> ${name} </td>
+                <td> ${age} </td>
+                <td> ${deposit} </td>
+                </tr>
+            `
+            document.getElementById('customerTable').insertAdjacentHTML('beforeend', newRow);
+
+            //clear the form 
+            document.getElementById('myform').reset();
+
+
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

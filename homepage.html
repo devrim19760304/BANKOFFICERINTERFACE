@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--windows location -->
+<html>
+
+<head>
+    <title>X Bank - Officer Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h1>Welcome, Bank Officer</h1>
+        <p>Please enter your name and password to proceed.</p>
+        <input type="text" id="officerName" placeholder="Enter your name">
+        <input type="password" id="officerPassword" placeholder="Enter your password">
+
+        <button onclick="login()">Login</button>
+        <div class="error-message" id="error-message">Invalid name or password!</div>
+    </div>
+
+    <script>
+        //here we will write today 
+        //1- create our password as js object 
+        //we declared as global level 
+        const validOfficer = {
+            name: 'emily',
+            password: '1234'
+        };
+
+        function login() {
+            const enteredName = document.getElementById('officerName').value;
+            const enteredPassword = document.getElementById('officerPassword').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // compare with your password 
+
+            if (enteredName === validOfficer.name && enteredPassword === validOfficer.password) {
+                //redirect to add customer page 
+                window.location.href = 'enteraccount.html';
+            } else {
+                errorMessage.style.display = 'block';
+
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
